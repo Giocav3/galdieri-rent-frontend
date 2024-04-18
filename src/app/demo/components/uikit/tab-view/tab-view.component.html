@@ -1,0 +1,7 @@
+<p-tabView [scrollable]="true">
+    <ng-container *ngFor="let tab of dynamicTabView.tabs">
+        <p-tabPanel [header]="tab.header" [disabled]="tab.disabled">
+            <p>{{ tab.content }}</p>
+        </p-tabPanel>
+    </ng-container>
+</p-tabView>

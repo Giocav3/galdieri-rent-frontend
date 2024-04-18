@@ -1,0 +1,11 @@
+@import "primeflex/primeflex.scss";
+
+.font-bold:hover {
+    color: blue; /* Cambia il colore del testo quando si passa sopra con il mouse */
+    cursor: pointer; /* Cambia il cursore del mouse per indicare che il testo è cliccabile */
+    /* Sottolinea il testo quando si passa sopra con il mouse */
+}
+
+.font-bold {
+    transition: color 0.3s ease; /* Aggiunge una transizione per il cambio di colore */
+}

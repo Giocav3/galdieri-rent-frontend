@@ -1,0 +1,44 @@
+<div class="kanban-container">
+    <div
+        cdkDropList
+        class="kanban-column"
+        (cdkDropListDropped)="drop($event, 'OPEN')"
+    >
+        <h2 class="kanban-column-title">Open</h2>
+        <div
+            class="kanban-column-content"
+            *ngFor="let item of dataNGprime | filterByStatus : 'OPEN'"
+        >
+            <!-- Visualizzazione delle informazioni sull'elemento -->
+            <div class="kanban-item">
+                <!-- Inserire qui le informazioni sull'elemento -->
+                <p>ID: {{ item.id }}</p>
+                <!-- Altre informazioni sull'elemento -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Ripeti la struttura per ciascuno stato desiderato (ad esempio, IN_PROGRESS, CLOSED, ecc.) -->
+
+    <!-- Esempio per IN_PROGRESS -->
+    <div
+        cdkDropList
+        class="kanban-column"
+        (cdkDropListDropped)="drop($event, 'IN_PROGRESS')"
+    >
+        <h2 class="kanban-column-title">In Progress</h2>
+        <div
+            class="kanban-column-content"
+            *ngFor="let item of dataNGprime | filterByStatus : 'IN_PROGRESS'"
+        >
+            <!-- Visualizzazione delle informazioni sull'elemento -->
+            <div class="kanban-item">
+                <!-- Inserire qui le informazioni sull'elemento -->
+                <p>ID: {{ item.id }}</p>
+                <!-- Altre informazioni sull'elemento -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Ripeti la struttura per ciascuno stato desiderato (ad esempio, CLOSED, ecc.) -->
+</div>

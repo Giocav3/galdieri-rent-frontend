@@ -1,0 +1,246 @@
+<!--
+<div class="card" style="display: flex; flex-direction: column; gap: 20px">
+    <p-fieldset [toggleable]="true">
+        <ng-template pTemplate="header">
+            <div class="flex flex-wrap align-items-center gap-2 px-2">
+                <p-avatar
+                    image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                    shape="circle"
+                />
+                <span class="font-bold">Alessandro Fedullo</span>
+
+                <span class="text-xs text-green-500">PREVENTIVO INOLTRATO</span>
+
+                <span class="text-xs text-gray-500">10/10/2021</span>
+            </div>
+        </ng-template>
+        <p class="m-0">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+    </p-fieldset>
+
+    <p-fieldset [toggleable]="true">
+        <ng-template pTemplate="header">
+            <div class="flex flex-wrap align-items-center gap-2 px-2">
+                <p-avatar
+                    image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                    shape="circle"
+                />
+                <span class="font-bold">MARTINA MARTINI</span>
+
+                <span class="text-xs text-orange-300">PREVENTIVO PRONTO</span>
+
+                <span class="text-xs text-gray-500">11/10/2021</span>
+            </div>
+        </ng-template>
+        <p class="m-0">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+    </p-fieldset>
+
+    <p-fieldset [toggleable]="true">
+        <ng-template pTemplate="header" class="sm:flex-direction-row">
+            <div class="flex flex-wrap align-items-center gap-2 px-2">
+                <p-avatar
+                    image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                    shape="circle"
+                />
+                <span class="font-bold">Alessandro Fedullo</span>
+
+                <span class="text-xs text-green-500"
+                    >PREVENTIVO RENT INVIATO</span
+                >
+
+                <span class="text-xs text-gray-500">12/10/2021</span>
+            </div>
+        </ng-template>
+        <p class="m-0">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+    </p-fieldset>
+</div>
+-->
+<div class="flex" style="flex-direction: column; gap: 10px">
+    <p-panel [toggleable]="true">
+        <ng-template pTemplate="header" style="background-color: white">
+            <div class="flex flex-wrap align-items-center gap-2 px-2">
+                <p-avatar
+                    image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                    shape="circle"
+                />
+                <a
+                    href="pagina_di_informazioni_su_Alessandro_Fedullo"
+                    class="font-bold"
+                    >Alessandro Fedullo</a
+                >
+                <span class="text-xs text-green-500">PREVENTIVO INOLTRATO</span>
+
+                <span class="text-xs text-gray-500">10/10/2021</span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <div
+                class="flex flex-wrap align-items-center justify-content-between gap-3"
+            >
+                <div class="flex align-items-center gap-2">
+                    <p-button
+                        icon="pi pi-user"
+                        rounded="true"
+                        text="true"
+                    ></p-button>
+                    <p-button
+                        icon="pi pi-bookmark"
+                        severity="secondary"
+                        rounded="true"
+                        text="true"
+                    ></p-button>
+                </div>
+                <span class="p-text-secondary">Inviato 2 ore fa</span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="icons">
+            <button
+                class="p-panel-header-icon p-link mr-2"
+                (click)="menu.toggle($event)"
+            >
+                <span class="pi pi-undo"></span>
+            </button>
+            <p-menu #menu id="config_menu" [model]="items" [popup]="true" />
+        </ng-template>
+        <p class="m-0">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+    </p-panel>
+
+    <p-panel [toggleable]="true">
+        <ng-template pTemplate="header">
+            <div class="flex flex-wrap align-items-center gap-2 px-2">
+                <p-avatar
+                    image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                    shape="circle"
+                />
+                <span class="font-bold">Alessandro Fedullo</span>
+
+                <span class="text-xs text-red-500">PREVENTIVO RIFIUTATO</span>
+
+                <span class="text-xs text-gray-500">10/10/2021</span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <div
+                class="flex flex-wrap align-items-center justify-content-between gap-3"
+            >
+                <div class="flex align-items-center gap-2">
+                    <p-button
+                        icon="pi pi-user"
+                        rounded="true"
+                        text="true"
+                    ></p-button>
+                    <p-button
+                        icon="pi pi-bookmark"
+                        severity="secondary"
+                        rounded="true"
+                        text="true"
+                    ></p-button>
+                </div>
+                <span class="p-text-secondary">Inviato 2 ore fa</span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="icons">
+            <button
+                class="p-panel-header-icon p-link mr-2"
+                (click)="menu.toggle($event)"
+            >
+                <span class="pi pi-undo"></span>
+            </button>
+            <p-menu #menu id="config_menu" [model]="items" [popup]="true" />
+        </ng-template>
+        <p class="m-0">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+    </p-panel>
+
+    <p-panel [toggleable]="true">
+        <ng-template pTemplate="header">
+            <div class="flex flex-wrap align-items-center gap-2 px-2">
+                <p-avatar
+                    image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                    shape="circle"
+                />
+                <span class="font-bold">Alessandro Fedullo</span>
+
+                <span class="text-xs text-red-500">PREVENTIVO RIFIUTATO</span>
+
+                <span class="text-xs text-gray-500">10/10/2021</span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <div
+                class="flex flex-wrap align-items-center justify-content-between gap-3"
+            >
+                <div class="flex align-items-center gap-2">
+                    <p-button
+                        icon="pi pi-user"
+                        rounded="true"
+                        text="true"
+                    ></p-button>
+                    <p-button
+                        icon="pi pi-bookmark"
+                        severity="secondary"
+                        rounded="true"
+                        text="true"
+                    ></p-button>
+                </div>
+                <span class="p-text-secondary">Inviato 2 ore fa</span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="icons">
+            <button
+                class="p-panel-header-icon p-link mr-2"
+                (click)="menu.toggle($event)"
+            >
+                <span class="pi pi-undo"></span>
+            </button>
+            <p-menu #menu id="config_menu" [model]="items" [popup]="true" />
+        </ng-template>
+        <p class="m-0">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+    </p-panel>
+</div>
