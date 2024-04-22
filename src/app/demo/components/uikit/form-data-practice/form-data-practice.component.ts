@@ -10,55 +10,22 @@ import { FormPractices } from 'src/app/demo/api/form-practices';
   styleUrl: './form-data-practice.component.scss'
 })
 export class FormDataPracticeComponent implements OnInit {
-  form: FormGroup;
   formData: FormPractices;
+  mesi: string = '36'
+  km: string = '10000'
+  casa_locatrice: string = 'LEASYS'
+  anticipo: string = '0'
 
   constructor(
     private fb: FormBuilder,
-    private formPracticesData: FormPracticesService
+    private formService: FormPracticesService
   ) { }
 
   ngOnInit(): void {
-    this.initializeForm();
-    this.getFormData();
-  }
-
-  initializeForm(): void {
-    this.form = this.fb.group({
-      code: ['', Validators.required],
-      ritardo: ['', Validators.required],
-      cliente: ['', Validators.required],
-      stato: ['', Validators.required],
-      nome: ['', Validators.required],
-      area_manager: ['', Validators.required]
-    });
-  }
-
-  getFormData(): void {
-    this.formPracticesData.getFormData().subscribe((data: FormPractices) => {
+    this.formService.getFormData().subscribe(data => {
       this.formData = data;
-      console.log(this.formData);
-      this.populateForm();
-    });
+    })
   }
 
-  populateForm(): void {
-    this.form.patchValue({
-      code: this.formData.code,
-      ritardo: this.formData.ritardo,
-      cliente: this.formData.cliente,
-      stato: this.formData.stato,
-      nome: this.formData.nome,
-      area_manager: this.formData.area_manager
-    });
-  }
-
-  onSubmit(): void {
-    if (this.form.valid) {
-      console.log(this.form.value);
-    } else {
-      console.log('Form is invalid');
-    }
-  }
 }
 

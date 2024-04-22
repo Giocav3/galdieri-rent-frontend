@@ -18,7 +18,7 @@ export class FormPracticesService {
             ritardo: 'Nessun ritardo',
             cliente: 'Cliente ABC',
             stato: 'In corso',
-            nome: 'Mario Rossi',
+            consulente: 'Mario Rossi',
             area_manager: 'Marco Bianchi'
         };
         return of(formData); // Simulazione di un'operazione asincrona che restituisce i dati

@@ -3,6 +3,6 @@ export interface FormPractices {
     ritardo: string;
     cliente: string;
     stato: string;
-    nome: string;
+    consulente: string;
     area_manager: string;
 }

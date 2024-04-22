@@ -15,6 +15,7 @@ import { FormDataPracticeRoutingModule } from './form-data-practice-routing.modu
 import { InputGroupModule } from 'primeng/inputgroup';
 import { ButtonModule } from 'primeng/button';
 import { FormDataPracticeComponent } from './form-data-practice.component';
+import { PanelModule } from 'primeng/panel';
 
 @NgModule({
     imports: [
@@ -34,6 +35,7 @@ import { FormDataPracticeComponent } from './form-data-practice.component';
         CascadeSelectModule,
         MultiSelectModule,
         InputTextareaModule,
+        PanelModule
     ],
     exports: [FormDataPracticeComponent],
     declarations: [FormDataPracticeComponent]

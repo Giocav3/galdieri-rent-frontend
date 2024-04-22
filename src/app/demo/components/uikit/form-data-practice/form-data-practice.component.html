@@ -1,9 +1,126 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <p-inputText placeholder="Code"></p-inputText>
-    <p-inputText placeholder="Ritardo"></p-inputText>
-    <p-inputText placeholder="Cliente"></p-inputText>
-    <p-inputText placeholder="Stato"></p-inputText>
-    <p-inputText placeholder="Nome"></p-inputText>
-    <p-inputText placeholder="Area Manager"></p-inputText>
-    <button type="submit" pButton label="Submit"></button>
-</form>
+<div class="p-fluid p-formgrid grid">
+    <div class="field col-12 md:col-6">
+        <label htmlFor="code">Code</label>
+        <input
+            pInputText
+            id="code"
+            [value]="formData?.code"
+            [disabled]="true"
+            type="text"
+        />
+    </div>
+    <div class="field col-12 md:col-6">
+        <label htmlFor="ritardo">Ritardo</label>
+        <input
+            pInputText
+            id="ritardo"
+            [value]="formData?.ritardo"
+            [disabled]="true"
+            type="text"
+        />
+    </div>
+    <div class="field col-12 md:col-6">
+        <label htmlFor="cliente">Cliente</label>
+        <input
+            pInputTextarea
+            id="cliente"
+            [value]="formData?.cliente"
+            [disabled]="true"
+            rows="4"
+        />
+    </div>
+    <div class="field col-12 md:col-6">
+        <label htmlFor="Stato">Stato</label>
+        <input
+            pInputText
+            id="stato"
+            [value]="formData?.stato"
+            [disabled]="true"
+            type="text"
+        />
+    </div>
+    <div class="field col-12 md:col-6">
+        <label htmlFor="consulente">Consulente</label>
+        <input
+            pInputText
+            id="consulente"
+            [value]="formData?.consulente"
+            [disabled]="true"
+            type="text"
+        />
+    </div>
+
+    <div class="field col-12 md:col-6">
+        <label htmlFor="area_manager">Area manager</label>
+        <input
+            pInputText
+            id="area_manager"
+            [value]="formData?.area_manager"
+            [disabled]="true"
+            type="text"
+        />
+    </div>
+    <div class="field col-12">
+        <p-panel [toggleable]="true" [collapsed]="true">
+            <ng-template pTemplate="header">
+                <div class="flex flex-wrap align-items-center gap-2 px-2">
+                    <p-avatar
+                        image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                        shape="circle"
+                    />
+                    <span class="font-bold">Veicolo:</span>
+                    <span>FIAT 500X 1.0 T3 120cv MT E6D Club | 2022</span>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="icons">
+                <button
+                    class="p-panel-header-icon p-link mr-2"
+                    (click)="menu.toggle($event)"
+                ></button>
+                <p-menu #menu id="config_menu" [model]="items" [popup]="true" />
+            </ng-template>
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="code">Mesi</label>
+                    <input
+                        pInputText
+                        id="code"
+                        [value]="mesi"
+                        [disabled]="true"
+                        type="text"
+                    />
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="code">KM</label>
+                    <input
+                        pInputText
+                        id="code"
+                        [value]="km"
+                        [disabled]="true"
+                        type="text"
+                    />
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="code">Anticipo</label>
+                    <input
+                        pInputText
+                        id="code"
+                        [value]="anticipo"
+                        [disabled]="true"
+                        type="text"
+                    />
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="code">Casa locatrice</label>
+                    <input
+                        pInputText
+                        id="code"
+                        [value]="casa_locatrice"
+                        [disabled]="true"
+                        type="text"
+                    />
+                </div>
+            </div>
+        </p-panel>
+    </div>
+</div>
