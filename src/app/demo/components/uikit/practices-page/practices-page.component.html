@@ -29,19 +29,28 @@
 </div>
 -->
 <div class="grid">
-    <div class="col-12 xl:col-8">
-        <div class="card mb-0" style="height: 700px">
-            <app-tab-view></app-tab-view>
+    <div class="col-12 xl:col-7">
+        <div class="card mb-0">
+            <app-form-data-practice></app-form-data-practice>
+            <app-tab-view [tabs]="practiceTabs"></app-tab-view>
         </div>
     </div>
-    <div class="col-12 xl:col-4">
-        <div
-            class="card card-w-title mb-10"
-            style="max-height: 350px; overflow-y: auto; gap: 20px"
-        >
-            <h5>Storico</h5>
-            <app-history></app-history>
+
+    <div class="col-12 xl:col-5">
+        <div class="card mb-10 card-w-title" style="overflow-x: hidden">
+            <h5>Azioni</h5>
+            <app-actions></app-actions>
         </div>
-        <div class="card card-w-title"><h5>Panel 3</h5></div>
+
+        <div class="card mb-10">
+            <app-tab-view [tabs]="notificationTabs"></app-tab-view>
+        </div>
+
+        <div class="card card-w-title mb-10">
+            <h5>Storico</h5>
+            <div style="max-height: 350px; overflow-y: auto; gap: 20px">
+                <app-history> </app-history>
+            </div>
+        </div>
     </div>
 </div>

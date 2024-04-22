@@ -17,6 +17,9 @@ import { PracticesPageComponent } from './practices-page.component';
 import { PracticesPageRoutingModule } from './practices-page-routing.module';
 import { HistoryModule } from '../history/history.module';
 import { TabViewPracticesModule } from '../tab-view/tab-view.module';
+import { FormDataPracticeModule } from '../form-data-practice/form-data-practice.module';
+import { ActionsModule } from '../actions/actions.module';
+import { CommentiModule } from '../commenti/commenti.module';
 
 @NgModule({
     imports: [
@@ -36,8 +39,12 @@ import { TabViewPracticesModule } from '../tab-view/tab-view.module';
         SplitterModule,
         PanelModule,
         HistoryModule,
-        TabViewPracticesModule
+        TabViewPracticesModule,
+        FormDataPracticeModule,
+        ActionsModule,
+        CommentiModule,
     ],
+    exports: [PracticesPageComponent],
     declarations: [PracticesPageComponent]
 })
 export class PracticesPageModule { }

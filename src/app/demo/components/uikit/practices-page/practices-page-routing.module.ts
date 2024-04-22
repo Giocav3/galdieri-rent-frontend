@@ -5,11 +5,7 @@ import { PracticesPageComponent } from './practices-page.component';
 @NgModule({
     imports: [RouterModule.forChild([
         {
-            path: '', component: PracticesPageComponent, children: [
-                { path: 'history', loadChildren: () => import('../history/history.module').then(m => m.HistoryModule) },
-                { path: 'tabview', loadChildren: () => import('../tab-view/tab-view.module').then(m => m.TabViewPracticesModule) },
-                { path: 'table', loadChildren: () => import('../table-practices/table-practices.module').then(m => m.TablePracticesModule) }
-            ]
+            path: '', component: PracticesPageComponent
         }
     ])],
     exports: [RouterModule]
