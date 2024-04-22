@@ -1,0 +1,52 @@
+<div class="email-form">
+    <form [formGroup]="emailForm" (ngSubmit)="sendEmail()">
+        <div class="form-group">
+            <label for="to">To:</label>
+            <input
+                type="email"
+                id="to"
+                formControlName="to"
+                pInputText
+                placeholder="Enter recipient email"
+            />
+            <small
+                *ngIf="
+                    emailForm.get('to').invalid && emailForm.get('to').touched
+                "
+                class="text-danger"
+                >Invalid email address</small
+            >
+        </div>
+        <div class="form-group">
+            <label for="subject">Subject:</label>
+            <input
+                type="text"
+                id="subject"
+                formControlName="subject"
+                pInputText
+                placeholder="Enter subject"
+            />
+            <small
+                *ngIf="
+                    emailForm.get('subject').invalid &&
+                    emailForm.get('subject').touched
+                "
+                class="text-danger"
+                >Subject is required</small
+            >
+        </div>
+
+        <label for="message">Message:</label>
+        <p-editor
+            formControlName="message"
+            placeholder="Enter your message"
+        ></p-editor>
+
+        <button
+            type="submit"
+            pButton
+            label="Send"
+            [disabled]="emailForm.invalid"
+        ></button>
+    </form>
+</div>
