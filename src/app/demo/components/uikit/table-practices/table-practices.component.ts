@@ -4,7 +4,7 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { Practices } from 'src/app/demo/api/practices';
 import { PracticesService } from 'src/app/demo/service/practice.service';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDragEnd, CdkDragStart, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ColumnDefinition } from 'src/app/demo/api/ColumnDefinition';
 import { ColumnNGprime } from 'src/app/demo/api/columnNGprime';
 import { Table, TableModule } from 'primeng/table';
@@ -27,7 +27,7 @@ export class TablePracticesComponent {
     dt!: Table;
     kanbanSections: { status: string, practices: Practices[] }[] = [];
     isTableVisible: boolean = true;
-
+    kanbanData: Record<string, Practices[]> = {};
 
 
     filterGlobal(event: any) {
@@ -44,6 +44,8 @@ export class TablePracticesComponent {
         // Carica i dati iniziali della tabella
         this.loadData();
         console.log(this.displayedColumns.map(col => col.def))
+
+        this.createKanban(this.dataNGprime);
 
     }
 
@@ -63,18 +65,7 @@ export class TablePracticesComponent {
             console.log(this.dataNGprimeVehicles)
         });
 
-        this.practicesService.getPractices().subscribe((data) => {
-            // Resetta le sezioni del Kanban
-            this.kanbanSections = [];
 
-            // Estrai gli stati unici dalla colonna id_status
-            const uniqueStatuses = [...new Set(data.map(practice => practice.id_status))];
-
-            // Crea le sezioni del Kanban basate sugli stati
-            uniqueStatuses.forEach(status => {
-                this.kanbanSections.push({ status: status, practices: data.filter(practice => practice.id_status === status) });
-            });
-        });
     }
 
     toggleColumnCheckbox(columnName: string) {
@@ -108,9 +99,6 @@ export class TablePracticesComponent {
     reorderColumns(event: CdkDragDrop<string[]>) {
         moveItemInArray(this.rowDef, event.previousIndex, event.currentIndex);
     }
-
-
-
 
     getSeverity(status: string): string | undefined {
         switch (status) {
@@ -157,5 +145,63 @@ export class TablePracticesComponent {
         console.log(row)
     }
 
+    // Definiamo una funzione per trasformare i dati della tabella in un kanban
+    createKanban(data: Practices[]): Record<string, Practices[]> {
+        // Inizializziamo le colonne per gli stati
+        const kanbanColumns: Record<string, Practices[]> = {
+            OPEN: [],
+            CLOSED: [],
+            IN_PROGRESS: []
+        };
+
+        // Iteriamo attraverso i dati della tabella e inseriamoli nelle colonne corrispondenti
+        data.forEach(item => {
+            switch (item.id_status) {
+                case 'OPEN':
+                    kanbanColumns['OPEN'].push(item);
+                    break;
+                case 'CLOSED':
+                    kanbanColumns['CLOSED'].push(item);
+                    break;
+                case 'IN_PROGRESS':
+                    kanbanColumns['IN_PROGRESS'].push(item);
+                    break;
+                default:
+                    break;
+            }
+        });
+        console.log(kanbanColumns)
+        this.kanbanData = kanbanColumns
+        return kanbanColumns;
+    }
+
+    onDrop(event: CdkDragDrop<Practices[]>, status: string) {
+        console.log(event, status)
+        if (event.previousContainer === event.container) {
+            moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+        } else {
+            const item: Practices = event.previousContainer.data[event.previousIndex];
+            transferArrayItem(
+                event.previousContainer.data,
+                event.container.data,
+                event.previousIndex,
+                event.currentIndex
+            );
+            // Aggiorna lo stato dell'elemento trascinato
+            item.id_status = status;
+            // Esegui l'aggiornamento del backend per salvare lo stato aggiornato
+            // Esempio: this.practicesService.updatePractice(item);
+        }
+    }
+
+    onDragStart(event: CdkDragStart, item: Practices) {
+        // Logga l'inizio del trascinamento e l'elemento trascinato
+        console.log('Drag started', item);
+    }
+
+    onDragEnd(event: CdkDragEnd) {
+        // Logga la fine del trascinamento
+        console.log('Drag ended');
+    }
 
 }

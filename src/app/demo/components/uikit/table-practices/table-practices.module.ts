@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, KeyValuePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TablePracticesComponent } from './table-practices.component';
 import { TablePracticesRoutingModule } from './table-practices-routing.module';
@@ -14,6 +14,7 @@ import { MultiSelectModule } from "primeng/multiselect";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from 'primeng/table';
+import { DragDropModule } from 'primeng/dragdrop';
 
 @NgModule({
     imports: [
@@ -30,7 +31,9 @@ import { TableModule } from 'primeng/table';
         MultiSelectModule,
         InputTextareaModule,
         InputTextModule,
-        TableModule
+        TableModule,
+        KeyValuePipe,
+        DragDropModule
     ],
     declarations: [TablePracticesComponent]
 })
