@@ -1,6 +1,6 @@
 interface Tab {
     header: string;
-    content: string;
+    path: string;
     disabled?: boolean;
 }
 
