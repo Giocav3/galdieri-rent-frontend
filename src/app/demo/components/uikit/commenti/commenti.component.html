@@ -1,0 +1,26 @@
+<!-- Il tuo template HTML -->
+<div *ngFor="let commento of commenti">
+    <div [ngClass]="{ 'space-commenti': !last }">
+        <p-fieldset [toggleable]="true">
+            <ng-template pTemplate="header">
+                <div class="flex justify-content-between">
+                    <div class="flex flex-wrap gap-3">
+                        <span class="font-bold">Amy Elsner</span>
+                        <i
+                            class="pi pi-phone"
+                            [ngClass]="{
+                                'text-red-500': commento.isMissedCall,
+                                'text-green-500': !commento.isMissedCall
+                            }"
+                        ></i>
+                        <span>{{ commento.callDate }}</span>
+                    </div>
+                </div>
+            </ng-template>
+
+            <p class="m-0">
+                {{ commento.note }}
+            </p>
+        </p-fieldset>
+    </div>
+</div>
