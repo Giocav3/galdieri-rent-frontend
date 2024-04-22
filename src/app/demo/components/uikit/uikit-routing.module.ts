@@ -21,8 +21,11 @@ import { RouterModule } from '@angular/router';
         { path: 'table-practices', data: { breadcrumb: 'Table-practices' }, loadChildren: () => import('./table-practices/table-practices.module').then(m => m.TablePracticesModule) },
         { path: 'tab-view', data: { breadcrumb: 'Tabview' }, loadChildren: () => import('./tab-view/tab-view.module').then(m => m.TabViewPracticesModule) },
         { path: 'history', data: { breadcrumb: 'History' }, loadChildren: () => import('./history/history.module').then(m => m.HistoryModule) },
+        { path: 'email-form', data: { breadcrumb: 'Email-form' }, loadChildren: () => import('./email-form/email-form.module').then(m => m.EmailFormModule) },
         { path: 'practices-page', data: { breadcrumb: 'Practices page' }, loadChildren: () => import('./practices-page/practices-page.module').then(m => m.PracticesPageModule) },
         { path: 'form-data-practice', data: { breadcrumb: 'Form data practice' }, loadChildren: () => import('./form-data-practice/form-data-practice.module').then(m => m.FormDataPracticeModule) },
+        { path: 'commenti', data: { breadcrumb: 'Commenti' }, loadChildren: () => import('./commenti/commenti.module').then(m => m.CommentiModule) },
+        { path: 'actions', data: { breadcrumb: 'Form data practice' }, loadChildren: () => import('./actions/actions.module').then(m => m.ActionsModule) },
         { path: 'menu', data: { breadcrumb: 'Menu' }, loadChildren: () => import('./menus/menus.module').then(m => m.MenusModule) },
         { path: '**', redirectTo: '/notfound' }
     ])],
