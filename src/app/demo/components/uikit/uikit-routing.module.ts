@@ -22,6 +22,7 @@ import { RouterModule } from '@angular/router';
         { path: 'tab-view', data: { breadcrumb: 'Tabview' }, loadChildren: () => import('./tab-view/tab-view.module').then(m => m.TabViewPracticesModule) },
         { path: 'history', data: { breadcrumb: 'History' }, loadChildren: () => import('./history/history.module').then(m => m.HistoryModule) },
         { path: 'email-form', data: { breadcrumb: 'Email-form' }, loadChildren: () => import('./email-form/email-form.module').then(m => m.EmailFormModule) },
+        { path: 'dashboard', data: { breadcrumb: 'Dashboard' }, loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
         { path: 'practices-page', data: { breadcrumb: 'Practices page' }, loadChildren: () => import('./practices-page/practices-page.module').then(m => m.PracticesPageModule) },
         { path: 'form-data-practice', data: { breadcrumb: 'Form data practice' }, loadChildren: () => import('./form-data-practice/form-data-practice.module').then(m => m.FormDataPracticeModule) },
         { path: 'commenti', data: { breadcrumb: 'Commenti' }, loadChildren: () => import('./commenti/commenti.module').then(m => m.CommentiModule) },
