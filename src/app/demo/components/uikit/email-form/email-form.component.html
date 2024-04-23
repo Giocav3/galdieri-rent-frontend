@@ -1,52 +1,87 @@
-<div class="email-form">
-    <form [formGroup]="emailForm" (ngSubmit)="sendEmail()">
-        <div class="form-group">
-            <label for="to">To:</label>
+<form [formGroup]="emailForm" (ngSubmit)="inviaEmail()" class="grid">
+    <div class="col-12 md:col-4">
+        <p-inputGroup>
+            <p-inputGroupAddon>
+                <i class="pi pi-envelope"></i>
+            </p-inputGroupAddon>
             <input
-                type="email"
-                id="to"
-                formControlName="to"
                 pInputText
-                placeholder="Enter recipient email"
+                placeholder="Destinatario"
+                formControlName="destinatario"
+                class="form-control"
             />
+        </p-inputGroup>
+        <!-- Mostra gli errori solo se il campo è stato toccato e non è valido -->
+        <div
+            *ngIf="
+                emailForm.get('destinatario').invalid &&
+                emailForm.get('destinatario').touched
+            "
+        >
             <small
+                id="receiver-help"
                 *ngIf="
-                    emailForm.get('to').invalid && emailForm.get('to').touched
+                    emailForm.get('destinatario').errors.email ||
+                    emailForm.get('destinatario').errors.required
                 "
-                class="text-danger"
-                >Invalid email address</small
+                class="text-red-500"
+                >Inserisci una mail valida</small
             >
         </div>
-        <div class="form-group">
-            <label for="subject">Subject:</label>
-            <input
-                type="text"
-                id="subject"
-                formControlName="subject"
-                pInputText
-                placeholder="Enter subject"
-            />
-            <small
-                *ngIf="
-                    emailForm.get('subject').invalid &&
-                    emailForm.get('subject').touched
-                "
-                class="text-danger"
-                >Subject is required</small
-            >
-        </div>
+    </div>
 
-        <label for="message">Message:</label>
+    <div class="col-12 md:col-4">
+        <p-inputGroup>
+            <p-inputGroupAddon>
+                <i class="cc-icon"></i>
+            </p-inputGroupAddon>
+            <input
+                pInputText
+                placeholder="CC"
+                formControlName="cc"
+                class="form-control"
+            />
+        </p-inputGroup>
+        <div *ngIf="emailForm.get('cc').invalid && emailForm.get('cc').touched">
+            <small
+                id="cc-help"
+                *ngIf="emailForm.get('cc').errors.email"
+                class="text-red-500"
+                >Inserisci una mail valida</small
+            >
+        </div>
+    </div>
+
+    <div class="col-12 md:col-4">
+        <p-inputGroup>
+            <p-inputGroupAddon>
+                <i class="text-icon"></i>
+            </p-inputGroupAddon>
+            <input
+                pInputText
+                placeholder="Oggetto"
+                formControlName="oggetto"
+                class="form-control"
+            />
+        </p-inputGroup>
+    </div>
+
+    <div class="col-12 md:col-12">
         <p-editor
-            formControlName="message"
-            placeholder="Enter your message"
-        ></p-editor>
+            [style]="{ height: '320px' }"
+            class="custom.editor"
+            placeholder="Testo email"
+            name="editor"
+            formControlName="text"
+        >
+        </p-editor>
+    </div>
 
-        <button
+    <div class="col-12">
+        <p-button
             type="submit"
-            pButton
-            label="Send"
-            [disabled]="emailForm.invalid"
-        ></button>
-    </form>
-</div>
+            [disabled]="!emailForm.valid"
+            label="Invia"
+        ></p-button>
+    </div>
+</form>

@@ -1,1 +1,15 @@
+.cc-icon {
+    display: inline-block;
+    width: 14px; /* Imposta le dimensioni desiderate per l'icona */
+    height: 14px;
+    background-image: url("../../../../../assets/cc.svg");
+    background-size: cover;
+}
 
+.text-icon {
+    display: inline-block;
+    width: 14px; /* Imposta le dimensioni desiderate per l'icona */
+    height: 14px;
+    background-image: url("../../../../../assets/text.svg");
+    background-size: cover;
+}
