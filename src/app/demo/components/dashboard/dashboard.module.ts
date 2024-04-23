@@ -10,7 +10,6 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { DashboardsRoutingModule } from './dashboard-routing.module';
 import { TablePracticesNgprimeModule } from '../table-practices-ngprime/table-practices-ngprime.module';
-import { TablePracticesNgprimeComponent } from '../table-practices-ngprime/table-practices-ngprime.component';
 import { KanbanComponent } from '../kanban/kanban.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
@@ -29,6 +28,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
         TablePracticesNgprimeModule,
         DragDropModule
     ],
-    declarations: [DashboardComponent, TablePracticesNgprimeComponent]
+    declarations: [DashboardComponent]
 })
 export class DashboardModule { }
