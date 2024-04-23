@@ -1,125 +1,108 @@
-<div class="card">
-    <button
-        pButton
-        label="Switch to Kanban"
-        (click)="switchToKanban()"
-    ></button>
-
-    <div class="card">
-        <ng-container *ngIf="isTableVisible; else kanbanView">
-            <p-table
-                #dt
-                [value]="dataNGprime"
-                dataKey="id"
-                [rowHover]="true"
-                [rows]="5"
-                [showCurrentPageReport]="true"
-                [rowsPerPageOptions]="[2, 5, 10, 25, 50]"
-                [loading]="false"
-                [paginator]="true"
-                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                [filterDelay]="0"
-                [globalFilterFields]="rowDef"
-                [reorderableColumns]="true"
-                [columns]="rowDef"
-                [scrollable]="true"
-                scrollHeight="600px"
-                responsiveLayout="scroll"
-            >
-                <ng-template pTemplate="caption">
-                    <div class="table-header">
-                        <button
-                            pButton
-                            label="Clear"
-                            class="p-button-outlined"
-                            icon="pi pi-filter-slash"
-                            (click)="clear(dt)"
-                        ></button>
+<ng-container *ngIf="isTableVisible; else kanbanView">
+    <p-table
+        #dt
+        [value]="dataNGprime"
+        dataKey="id"
+        [rowHover]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[2, 5, 10, 25, 50]"
+        [loading]="false"
+        [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [filterDelay]="0"
+        [globalFilterFields]="rowDef"
+        [reorderableColumns]="true"
+        [columns]="rowDef"
+        [scrollable]="true"
+        scrollHeight="600px"
+        responsiveLayout="scroll"
+    >
+        <ng-template pTemplate="caption">
+            <div class="table-header">
+                <button
+                    pButton
+                    label="Clear"
+                    class="p-button-outlined"
+                    icon="pi pi-filter-slash"
+                    (click)="clear(dt)"
+                ></button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 4rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="id" style="min-width: 8rem">
+                    <div
+                        class="flex justify-content-between align-items-center"
+                    >
+                        ID
+                        <p-sortIcon field="id"></p-sortIcon>
+                        <p-columnFilter
+                            type="text"
+                            field="id"
+                            display="menu"
+                            class="ml-auto"
+                        ></p-columnFilter>
                     </div>
-                </ng-template>
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th style="width: 4rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
-                        <th pSortableColumn="id" style="min-width: 8rem">
-                            <div
-                                class="flex justify-content-between align-items-center"
-                            >
-                                ID
-                                <p-sortIcon field="id"></p-sortIcon>
-                                <p-columnFilter
-                                    type="text"
-                                    field="id"
-                                    display="menu"
-                                    class="ml-auto"
-                                ></p-columnFilter>
-                            </div>
-                        </th>
-                        <th
-                            pSortableColumn="id_proscpect"
-                            style="min-width: 8rem"
+                </th>
+                <th pSortableColumn="id_proscpect" style="min-width: 8rem">
+                    <div
+                        class="flex justify-content-between align-items-center"
+                    >
+                        ID Prospect
+                        <p-sortIcon field="id_proscpect"></p-sortIcon>
+                        <p-columnFilter
+                            type="text"
+                            field="id_proscpect"
+                            display="menu"
+                            class="ml-auto"
+                        ></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="id_status" style="min-width: 8rem">
+                    <div
+                        class="flex justify-content-between align-items-center"
+                    >
+                        ID Status
+                        <p-sortIcon field="id_status"></p-sortIcon>
+                        <p-columnFilter
+                            field="id_status"
+                            matchMode="in"
+                            display="menu"
+                            [showMatchModes]="false"
+                            [showOperator]="false"
+                            [showAddButton]="false"
+                            class="ml-auto"
                         >
-                            <div
-                                class="flex justify-content-between align-items-center"
+                            <ng-template pTemplate="header"> </ng-template>
+                            <ng-template
+                                pTemplate="filter"
+                                let-value
+                                let-filter="filterCallback"
                             >
-                                ID Prospect
-                                <p-sortIcon field="id_proscpect"></p-sortIcon>
-                                <p-columnFilter
-                                    type="text"
-                                    field="id_proscpect"
-                                    display="menu"
-                                    class="ml-auto"
-                                ></p-columnFilter>
-                            </div>
-                        </th>
-                        <th pSortableColumn="id_status" style="min-width: 8rem">
-                            <div
-                                class="flex justify-content-between align-items-center"
-                            >
-                                ID Status
-                                <p-sortIcon field="id_status"></p-sortIcon>
-                                <p-columnFilter
-                                    field="id_status"
-                                    matchMode="in"
-                                    display="menu"
-                                    [showMatchModes]="false"
-                                    [showOperator]="false"
-                                    [showAddButton]="false"
-                                    class="ml-auto"
+                                <p-multiSelect
+                                    [ngModel]="value"
+                                    [options]="uniqueStatuses"
+                                    placeholder="Any"
+                                    (onChange)="filter($event.value)"
+                                    optionLabel=""
                                 >
-                                    <ng-template pTemplate="header">
+                                    <!-- optionLabel serve per leggere nel filtro il nome dei componenti selezionati, se il dato che arriva da options è diretto, quindi value = 'xxx', lasciare vuoto, altrimenti nel caso value.brand avremo optionLabel = "brand" -->
+                                    <ng-template let-option pTemplate="item">
+                                        <p-tag
+                                            [value]="option"
+                                            [severity]="getSeverity(option)"
+                                        ></p-tag>
                                     </ng-template>
-                                    <ng-template
-                                        pTemplate="filter"
-                                        let-value
-                                        let-filter="filterCallback"
-                                    >
-                                        <p-multiSelect
-                                            [ngModel]="value"
-                                            [options]="uniqueStatuses"
-                                            placeholder="Any"
-                                            (onChange)="filter($event.value)"
-                                            optionLabel=""
-                                        >
-                                            <!-- optionLabel serve per leggere nel filtro il nome dei componenti selezionati, se il dato che arriva da options è diretto, quindi value = 'xxx', lasciare vuoto, altrimenti nel caso value.brand avremo optionLabel = "brand" -->
-                                            <ng-template
-                                                let-option
-                                                pTemplate="item"
-                                            >
-                                                <p-tag
-                                                    [value]="option"
-                                                    [severity]="
-                                                        getSeverity(option)
-                                                    "
-                                                ></p-tag>
-                                            </ng-template>
-                                        </p-multiSelect>
-                                    </ng-template>
-                                </p-columnFilter>
-                            </div>
-                        </th>
-                        <!-- DAT FILTER <th pSortableColumn="date" style="min-width: 8rem">
+                                </p-multiSelect>
+                            </ng-template>
+                        </p-columnFilter>
+                    </div>
+                </th>
+                <!-- DAT FILTER <th pSortableColumn="date" style="min-width: 8rem">
             <div class="flex justify-content-between align-items-center">
               Date
               <p-sortIcon field="date"></p-sortIcon>
@@ -132,142 +115,127 @@
             </div>
           </th> -->
 
-                        <th
-                            pSortableColumn="id_vehicle"
-                            style="min-width: 8rem"
-                        >
-                            <div
-                                class="flex justify-content-between align-items-center"
-                            >
-                                ID Vehicle
-                                <p-sortIcon field="id_vehicle"></p-sortIcon>
-                                <p-columnFilter
-                                    type="text"
-                                    field="id_vehicle"
-                                    display="menu"
-                                    class="ml-auto"
-                                ></p-columnFilter>
-                            </div>
-                        </th>
+                <th pSortableColumn="id_vehicle" style="min-width: 8rem">
+                    <div
+                        class="flex justify-content-between align-items-center"
+                    >
+                        ID Vehicle
+                        <p-sortIcon field="id_vehicle"></p-sortIcon>
+                        <p-columnFilter
+                            type="text"
+                            field="id_vehicle"
+                            display="menu"
+                            class="ml-auto"
+                        ></p-columnFilter>
+                    </div>
+                </th>
 
-                        <th
-                            pSortableColumn="id_employee"
-                            style="min-width: 8rem"
-                        >
-                            <div
-                                class="flex justify-content-between align-items-center"
-                            >
-                                ID Vehicle
-                                <p-sortIcon field="id_employee"></p-sortIcon>
-                                <p-columnFilter
-                                    type="text"
-                                    field="id_employee"
-                                    display="menu"
-                                    class="ml-auto"
-                                ></p-columnFilter>
-                            </div>
-                        </th>
-                        <th style="min-width: 8rem">
-                            <span class="p-column-title">ID Actions</span>
-                        </th>
-                    </tr>
-                </ng-template>
-
-                <ng-template pTemplate="body" let-data>
-                    <tr class="p-selectable-row">
-                        <td>
-                            <p-tableCheckbox [value]="data"></p-tableCheckbox>
-                        </td>
-                        <td>
-                            <span class="p-column-title">ID</span>
-                            {{ data.id }}
-                        </td>
-                        <td>
-                            <span class="p-column-title">ID Prospect</span>
-                            <span class="ml-1 vertical-align-middle">{{
-                                data.id_proscpect
-                            }}</span>
-                        </td>
-                        <td>
-                            <span class="p-column-title">ID Status</span>
-                            <p-tag
-                                [value]="data.id_status"
-                                [severity]="getSeverity(data.id_status)"
-                            ></p-tag>
-                        </td>
-                        <td>
-                            <span class="p-column-title">ID Vehicle</span>
-                            <span class="ml-1 vertical-align-middle">{{
-                                data.id_vehicle
-                            }}</span>
-                        </td>
-                        <td>
-                            <span class="p-column-title">ID Employee</span>
-                            {{ data.id_employee }}
-                        </td>
-
-                        <td>
-                            <span class="p-column-title">ID Actions</span>
-                            <div
-                                style="
-                                    display: flex;
-                                    justify-content: space-between;
-                                "
-                            >
-                                <button
-                                    pButton
-                                    type="button"
-                                    icon="pi pi-check"
-                                    class="p-button-success"
-                                    (click)="acceptPractices(data)"
-                                ></button>
-                                <button
-                                    pButton
-                                    type="button"
-                                    icon="pi pi-times"
-                                    class="p-button-danger"
-                                    (click)="rejectPractices(data)"
-                                ></button>
-                                <button
-                                    pButton
-                                    type="button"
-                                    icon="pi pi-pencil"
-                                    (click)="editPractices(data)"
-                                ></button>
-                            </div>
-                        </td>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="emptymessage">
-                    <tr>
-                        <td colspan="8">No customers found.</td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </ng-container>
-
-        <ng-template #kanbanView>
-            <div class="p-grid">
-                <div class="p-col" *ngFor="let status of uniqueStatuses">
-                    <p-card [header]="status">
-                        <div
-                            class="kanban-cards"
-                            cdkDropList
-                            (cdkDropListDropped)="onDrop($event, status)"
-                        >
-                            <div
-                                class="kanban-card"
-                                *ngFor="
-                                    let practice of getPracticesByStatus(status)
-                                "
-                                cdkDrag
-                            >
-                                {{ practice.id }}
-                            </div>
-                        </div>
-                    </p-card>
-                </div>
-            </div>
+                <th pSortableColumn="id_employee" style="min-width: 8rem">
+                    <div
+                        class="flex justify-content-between align-items-center"
+                    >
+                        ID Vehicle
+                        <p-sortIcon field="id_employee"></p-sortIcon>
+                        <p-columnFilter
+                            type="text"
+                            field="id_employee"
+                            display="menu"
+                            class="ml-auto"
+                        ></p-columnFilter>
+                    </div>
+                </th>
+                <th style="min-width: 8rem">
+                    <span class="p-column-title">ID Actions</span>
+                </th>
+            </tr>
         </ng-template>
+
+        <ng-template pTemplate="body" let-data>
+            <tr class="p-selectable-row">
+                <td>
+                    <p-tableCheckbox [value]="data"></p-tableCheckbox>
+                </td>
+                <td>
+                    <span class="p-column-title">ID</span>
+                    {{ data.id }}
+                </td>
+                <td>
+                    <span class="p-column-title">ID Prospect</span>
+                    <span class="ml-1 vertical-align-middle">{{
+                        data.id_proscpect
+                    }}</span>
+                </td>
+                <td>
+                    <span class="p-column-title">ID Status</span>
+                    <p-tag
+                        [value]="data.id_status"
+                        [severity]="getSeverity(data.id_status)"
+                    ></p-tag>
+                </td>
+                <td>
+                    <span class="p-column-title">ID Vehicle</span>
+                    <span class="ml-1 vertical-align-middle">{{
+                        data.id_vehicle
+                    }}</span>
+                </td>
+                <td>
+                    <span class="p-column-title">ID Employee</span>
+                    {{ data.id_employee }}
+                </td>
+
+                <td>
+                    <span class="p-column-title">ID Actions</span>
+                    <div style="display: flex; justify-content: space-between">
+                        <button
+                            pButton
+                            type="button"
+                            icon="pi pi-check"
+                            class="p-button-success"
+                            (click)="acceptPractices(data)"
+                        ></button>
+                        <button
+                            pButton
+                            type="button"
+                            icon="pi pi-times"
+                            class="p-button-danger"
+                            (click)="rejectPractices(data)"
+                        ></button>
+                        <button
+                            pButton
+                            type="button"
+                            icon="pi pi-pencil"
+                            (click)="editPractices(data)"
+                        ></button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="8">No customers found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</ng-container>
+
+<ng-template #kanbanView>
+    <div class="p-grid">
+        <div class="p-col" *ngFor="let status of uniqueStatuses">
+            <p-card [header]="status">
+                <div
+                    class="kanban-cards"
+                    cdkDropList
+                    (cdkDropListDropped)="onDrop($event, status)"
+                >
+                    <div
+                        class="kanban-card"
+                        *ngFor="let practice of getPracticesByStatus(status)"
+                        cdkDrag
+                    >
+                        {{ practice.id }}
+                    </div>
+                </div>
+            </p-card>
+        </div>
     </div>
-</div>
+</ng-template>

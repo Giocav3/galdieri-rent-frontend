@@ -4,14 +4,18 @@ import { TablePracticesNgprimeComponent } from './table-practices-ngprime.compon
 import { TableModule } from 'primeng/table';
 import { TablePracticesNgprimeComponentRoutingModule } from './table-practices-ngprime-routing.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
     imports: [
         CommonModule,
         TableModule,
         TablePracticesNgprimeComponentRoutingModule,
-        DragDropModule
+        DragDropModule,
+        ButtonModule
     ],
+    exports: [TablePracticesNgprimeComponent],
+    declarations: [TablePracticesNgprimeComponent],
 
 })
 export class TablePracticesNgprimeModule { }
