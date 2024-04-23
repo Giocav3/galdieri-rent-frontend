@@ -8,6 +8,10 @@
                 >
                     <app-commenti></app-commenti>
                 </div>
+
+                <div *ngIf="tab.header === 'EMAIL'">
+                    <app-email-form></app-email-form>
+                </div>
             </ng-template>
         </p-tabPanel>
     </ng-container>

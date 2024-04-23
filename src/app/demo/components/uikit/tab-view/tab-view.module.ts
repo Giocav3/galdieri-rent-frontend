@@ -5,13 +5,15 @@ import { TabViewRoutingModule } from './tab-view-rounting.module';
 import { TabViewModule } from 'primeng/tabview';
 import { CommentiModule } from '../commenti/commenti.module';
 import { TabViewExampleComponent } from './tab-view-example.component';
+import { EmailFormModule } from '../email-form/email-form.module';
 
 @NgModule({
     imports: [
         CommonModule,
         TabViewRoutingModule,
         TabViewModule,
-        CommentiModule
+        CommentiModule,
+        EmailFormModule
     ],
     exports: [TabViewComponent, TabViewExampleComponent],
     declarations: [TabViewComponent, TabViewExampleComponent]
